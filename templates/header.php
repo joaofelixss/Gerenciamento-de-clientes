@@ -58,12 +58,12 @@ if (isset($_SESSION['msg'])) {
         <div class="navbar-nav">
           <div>
             <!-- Botão para abrir o modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModal1">
               <a>Adicionar Clientes<img src="<?= $BASE_URL ?>assets/pessoa.svg" alt="add"></a>
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="meuModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal fade" id="meuModal1" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -103,7 +103,6 @@ if (isset($_SESSION['msg'])) {
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
