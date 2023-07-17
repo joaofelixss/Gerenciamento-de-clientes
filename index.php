@@ -2,36 +2,13 @@
 require_once("templates/header.php");
 ?>
 
-<style>
-  .delete-form {
-    display: inline-block;
-  }
-
-  .delete-btn {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-  }
-
-  #msg {
-    color: #155724;
-    background-color: #D4EDDA;
-    border: 1px solid #C3E6CB;
-    padding: 10px;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 30px;
-  }
-</style>
-
 <div class="container">
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
   <?php endif; ?>
-  <h1 id="main-title">Minha Agenda</h1>
+  <h1 class="text-center p-3">Meus Clientes</h1>
   <?php if (count($clientes) > 0) : ?>
-    <table class="table" id="contacts-table">
+    <table class="table text-center" id="contacts-table">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -53,12 +30,12 @@ require_once("templates/header.php");
             <td scope="row"><?= $cliente['data'] ?></td>
             <td scope="row"><?= $cliente['observacoes'] ?></td>
             <td class="actions">
-              <a href="<?= $BASE_URL ?>ler.php"><img class="img" src="<?= $BASE_URL ?>assets/vixualizar.svg" alt="editar"></a>
+              <a href="<?= $BASE_URL ?>ler.php"><img class="img" src="<?= $BASE_URL ?>assets/eye.svg" alt=""></a>
               <a href="<?= $BASE_URL ?>editar.php""><img class=" img" src="<?= $BASE_URL ?>assets/edit.svg " alt="visualizar"></a>
               <form class="delete-form" action="<?= $BASE_URL ?>/config/process.php" method="POST">
                 <input type="hidden" name="type" value="delete">
-                <input type="hidden" name="id" value="">
-                <button type="submit" class="delete-btn"><img src="<?= $BASE_URL ?>assets/delete.svg" alt="deletar"></button>
+                <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
+                <button type="submit" class="delete-btn"><img src="<?= $BASE_URL ?>assets/trash2.svg" alt="deletar"></button>
               </form>
             </td>
           </tr>
@@ -66,7 +43,7 @@ require_once("templates/header.php");
       </tbody>
     </table>
   <?php else : ?>
-
+    <p id="empty-list-text">Ainda não há Clientes, <a href="<?= $BASE_URL ?>create.php">clique aqui para adicionar</a>.</p>
   <?php endif ?>
 </div>
 
