@@ -8,7 +8,7 @@ require_once("templates/header.php");
   }
 
   .container {
-    width: 50vh;
+    width: 70vh;
   }
 </style>
 
@@ -18,12 +18,20 @@ require_once("templates/header.php");
   <form id="create-form" action="<?= $BASE_URL ?>config/process.php" method="POST">
     <input type="hidden" name="type" value="create">
     <div class="form-group p-2">
-      <label for="nome">Nome do contato:</label>
-      <input type="text" class="form-control " id="name" name="name" placeholder="Digite o nome" required>
+      <label for="nome">Nome do cliente</label>
+      <input type="text" class="form-control " id="nome" name="nome" placeholder="nome do cliente" required>
     </div>
     <div class="form-group p-2">
-      <label for="telefone">Telefone do contato:</label>
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="Digite o telefone" required>
+      <label for="telefone">Telefone do cliente</label>
+      <input type="text" class="form-control" id="telefone" name="telefone" placeholder="telefone do cliente" required>
+    </div>
+    <div class="form-group p-2">
+      <label for="preco">Preço da Compra</label>
+      <input type="text" class="form-control" id="preco" name="preco" placeholder="R$" required>  
+    </div>
+    <div class="form-group p-2">
+      <label for="data">Data da compra</label>
+      <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" required>  
     </div>
     <div class="form-group p-2">
       <label for="observacoes">Observações:</label>
