@@ -1,12 +1,12 @@
 <?php
 
   $host = 'localhost';
-  $dbname = 'JF-gerenciamento_clientes';
+  $dbname = 'jf-gerenciamento_clientes';
   $user = 'root';
   $pass = '';
 
   try{
-    $conn = new PDO("host=$host;dbname=$dbname", $user, $pass);
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
         // Ativar o modo de erros
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
