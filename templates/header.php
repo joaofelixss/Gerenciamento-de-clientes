@@ -1,6 +1,12 @@
 <?php
-require_once("config/connection.php");
+require_once("config/process.php");
 require_once("config/url.php");
+
+// limpa a mensagem
+if (isset($_SESSION['msg'])) {
+  $printMsg = $_SESSION['msg'];
+  $_SESSION['msg'] = '';
+}
 ?>
 
 <!DOCTYPE html>

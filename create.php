@@ -27,15 +27,15 @@ require_once("templates/header.php");
     </div>
     <div class="form-group p-2">
       <label for="preco">Preço da Compra</label>
-      <input type="text" class="form-control" id="preco" name="preco" placeholder="R$" required>  
+      <input type="text" class="form-control" id="preco" name="preco" placeholder="R$" required>
     </div>
     <div class="form-group p-2">
       <label for="data">Data da compra</label>
-      <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" required>  
+      <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" required>
     </div>
     <div class="form-group p-2">
       <label for="observacoes">Observações:</label>
-      <textarea type="text" class="form-control" id="observations" name="observations" placeholder="Insira as observações" rows="3"></textarea>
+      <textarea type="text" class="form-control" id="observacoes" name="observacoes" placeholder="Insira as observações" rows="3"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
