@@ -64,12 +64,51 @@ if (!empty($post)) {
       $error = $e->getMessage();
       echo "Erro: $error";
     }
-  }
 
+  } else if ($post['type'] === "delete") {
+
+    $id = $post['id'];
+
+    $query = "DELETE FROM clientes WHERE id = :id";           
+
+    $concluir = $conn->prepare($query);
+
+    $concluir->bindParam(":id", $id);
+
+    try {
+
+      $concluir->execute();
+      $_SESSION["msg"] = "Cliente removido com sucesso";
+    } catch (PDOException $e) {
+      $error = $e->getMessage();
+      echo "Erro: $error";
+    }
+  }
   // Redirect HOME
   header("Location:" . $BASE_URL . "../index.php");
 
 } else {
+    
+  $id;
+
+  if(!empty($_GET)) {
+    $id = $_GET["id"];
+  }
+
+  // Retorna o dado de um contato
+  if(!empty($id)) {
+
+    $query = "SELECT * FROM clientes WHERE id = :id";
+
+    $stmt = $conn->prepare($query);
+
+    $stmt->bindParam(":id", $id);
+
+    $stmt->execute();
+
+    $contact = $stmt->fetch();
+
+  } else {
 
   // Retorna todos os contatos
   $clientes = [];
@@ -81,6 +120,7 @@ if (!empty($post)) {
   $stmt->execute();
 
   $clientes = $stmt->fetchAll();
+  }
 }
 
 // FECHAR CONEXÃO

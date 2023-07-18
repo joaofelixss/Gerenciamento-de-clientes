@@ -30,12 +30,12 @@ require_once("templates/header.php");
               <!-- =================== VISUALIZAR CLIENTE ========================== -->
 
               <div>
-                <!-- Botão para abrir o modal 2-->
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2">
+                <!-- Botão para abrir o modal 1-->
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal1<?= $cliente['id'] ?>">
                   <a><img src="<?= $BASE_URL ?>assets/eye.svg" alt="visualizar"></a>
                 </button>
-                <!-- Modal 2 -->
-                <div class="modal fade" id="meuModal2" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <!-- Modal 1 -->
+                <div class="modal fade" id="meuModal1<?= $cliente['id'] ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -60,12 +60,12 @@ require_once("templates/header.php");
               <!-- =================== EDITAR CLIENTE ========================== -->
 
               <div>
-                <!-- Botão para abrir o modal3 -->
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal3">
+                <!-- Botão para abrir o modal2 -->
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2<?= $cliente['id'] ?>">
                   <a><img class=" img" src="<?= $BASE_URL ?>assets/edit.svg " alt="visualizar"></a>
                 </button>
-                <!-- Modal3 -->
-                <div class="modal fade" id="meuModal3" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <!-- Modal2 -->
+                <div class="modal fade" id="meuModal2<?= $cliente['id'] ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -109,27 +109,61 @@ require_once("templates/header.php");
 
               <!-- =================== EXCLUIR CLIENTE ========================== -->
 
-              <form class="delete-form" action="<?= $BASE_URL ?>/config/process.php" method="POST">
-                <input type="hidden" name="type" value="delete">
-                <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
-                <button type="submit" class="delete-btn"><img src="<?= $BASE_URL ?>assets/trash2.svg" alt="deletar"></button>
-              </form>
+              <div>
+                <!-- Botão para abrir o modal3 -->
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal3<?= $cliente['id'] ?>">
+                  <a><img class=" img" src="<?= $BASE_URL ?>assets/trash2.svg " alt="visualizar"></a>
+                </button>
+                <!-- Modal3 -->
+                <div class="modal fade" id="meuModal3<?= $cliente['id'] ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Excluir Cliente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                      </div>
+                      <div class="modal-body text-start">
+                        <form action="<?= $BASE_URL ?>config/process.php" method="POST">
+                          <input type="hidden" name="type" value="delete">
+                          <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
+                          <h1 class="text-center"><?= $cliente['nome'] ?></h1>
+                          <div class="form-group p-2">
+                            <label for="data">Data da compra</label>
+                            <input type="text" class="form-control" id="data" name="data" disabled placeholder="01/01/2023" value="<?= $cliente['data'] ?>" required>
+                          </div>
+                          <div class="form-group p-2">
+                            <label for="observacoes">Observações:</label>
+                            <textarea type="text" class="form-control" id="observacoes" disabled name="observacoes" placeholder="Insira as observações" rows="3"><?= $cliente['observacoes'] ?></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Deseja mesmo excluir o cliente ?</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
   <?php else : ?>
+
+    <!-- =================== ADICIONAR CLIENTE EM CASO DE NÃO HOUVER REGISTROS ========================== -->
+
     <div>
       <div class="navbar-nav">
         <div>
           <!-- Botão para abrir o modal -->
-          <p id="empty-list-text">Ainda não há Clientes</p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModal1">
+          <p id="empty-list-text">Ainda não há Clientes</p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModal">
             <a>clique aqui para adicionar</a>
           </button>
 
           <!-- Modal -->
-          <div class="modal fade" id="meuModal1" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal fade" id="meuModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -159,7 +193,7 @@ require_once("templates/header.php");
                       <label for="observacoes">Observações:</label>
                       <textarea type="text" class="form-control" id="observacoes" name="observacoes" placeholder="Insira as observações" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
                   </form>
                 </div>
                 <div class="modal-footer">
