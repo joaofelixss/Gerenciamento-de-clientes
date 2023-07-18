@@ -34,10 +34,41 @@ if (!empty($post)) {
       $error = $e->getMessage();
       echo "Erro: $error";
     }
+
+  } else if ($post['type'] === "edit") {
+    $nome = $post['nome'];
+    $telefone = $post['telefone'];
+    $preco = $post['preco'];
+    $data = $post['data'];
+    $observacoes = $post['observacoes'];
+    $id = $post['id'];
+
+    $query = "UPDATE clientes
+              SET nome = :nome, telefone = :telefone, preco = :preco, data = :data, observacoes = :observacoes
+              WHERE id = :id";
+
+    $concluir = $conn->prepare($query);
+
+    $concluir->bindParam(":nome", $nome);
+    $concluir->bindParam(":telefone", $telefone);
+    $concluir->bindParam(":preco", $preco);
+    $concluir->bindParam(":data", $data);
+    $concluir->bindParam(":observacoes", $observacoes);
+    $concluir->bindParam(":id", $id);
+
+    try {
+
+      $concluir->execute();
+      $_SESSION["msg"] = "Cliente atualizado com sucesso";
+    } catch (PDOException $e) {
+      $error = $e->getMessage();
+      echo "Erro: $error";
+    }
   }
 
   // Redirect HOME
   header("Location:" . $BASE_URL . "../index.php");
+
 } else {
 
   // Retorna todos os contatos

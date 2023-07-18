@@ -13,10 +13,8 @@ require_once("templates/header.php");
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nome</th>
-          <th scope="col">Telefone</th>
           <th scope="col">Preço</th>
           <th scope="col">Data</th>
-          <th scope="col">Observações</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -25,10 +23,8 @@ require_once("templates/header.php");
           <tr>
             <td scope="row" class="col-id"><?= $cliente['id'] ?></td>
             <td scope="row"><?= $cliente['nome'] ?></td>
-            <td scope="row"><?= $cliente['telefone'] ?></td>
             <td scope="row"><?= $cliente['preco'] ?></td>
             <td scope="row"><?= $cliente['data'] ?></td>
-            <td scope="row"><?= $cliente['observacoes'] ?></td>
             <td class="d-flex">
 
               <!-- =================== VISUALIZAR CLIENTE ========================== -->
@@ -48,13 +44,13 @@ require_once("templates/header.php");
                       </div>
                       <div class="modal-body">
                         <h1><?= $cliente["nome"] ?></h1>
-                        <p class="bold">Telefone:</p>
-                        <p><?= $cliente["telefone"] ?></p>
-                        <p class="bold">Observações:</p>
-                        <p><?= $cliente["observacoes"] ?></p>
+                        <br>
+                        <h6>Telefone: <?= $cliente["telefone"] ?></h6>
+                        <br>
+                        <h6>Observações: <?= $cliente["observacoes"] ?></h6>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
                       </div>
                     </div>
                   </div>
@@ -79,6 +75,7 @@ require_once("templates/header.php");
                       <div class="modal-body text-start">
                         <form action="<?= $BASE_URL ?>config/process.php" method="POST">
                           <input type="hidden" name="type" value="edit">
+                          <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
                           <div class="form-group p-2">
                             <label for="nome">Nome do cliente</label>
                             <input type="text" class="form-control " id="nome" name="nome" placeholder="nome do cliente" value="<?= $cliente['nome'] ?>" required>
@@ -99,11 +96,11 @@ require_once("templates/header.php");
                             <label for="observacoes">Observações:</label>
                             <textarea type="text" class="form-control" id="observacoes" name="observacoes" placeholder="Insira as observações" rows="3"><?= $cliente['observacoes'] ?></textarea>
                           </div>
-                          <button type="submit" class="btn btn-primary">Cadastrar</button>
+                          <button type="submit" class="btn btn-primary">Atualizar cliente</button>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
                       </div>
                     </div>
                   </div>

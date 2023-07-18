@@ -97,7 +97,7 @@ if (isset($_SESSION['msg'])) {
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
                   </div>
                 </div>
               </div>
