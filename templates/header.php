@@ -21,11 +21,11 @@ if (isset($_SESSION['msg'])) {
 
 <style>
   .container {
-    height: 70vh;
+    height: 50vh;
   }
 
   .inicio {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: white;
   }
 

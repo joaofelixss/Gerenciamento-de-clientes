@@ -1,13 +1,29 @@
 <?php
 require_once("templates/header.php");
-?>
 
-<div class="container">
+//verificar se houve uma pesquisa
+
+?>
+<?php if (count($clientes) > 0) : ?>
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
   <?php endif; ?>
-  <h1 class="text-center p-3">Meus Clientes</h1>
-  <?php if (count($clientes) > 0) : ?>
+  <!-- search & add new -->
+  <div class="d-flex justify-content-start p-4 ms-5">
+    <form action="index.php" method="post">
+      <div class="row">
+        <div class="col-auto">
+          <input type="text" class="form-control" name="text_search" id="text_search" minlength="3" maxlength="20" required>
+        </div>
+        <div class="col-auto"><input type="submit" class="btn btn-outline-primary" value="Procurar"></div>
+        <div class="col-auto"><a href="index.php" class="btn btn-outline-primary">Ver tudo</a></div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="container">
+    <h1 class="text-center p-3">Meus Clientes</h1>
     <table class="table text-center" id="contacts-table">
       <thead>
         <tr>
@@ -158,9 +174,13 @@ require_once("templates/header.php");
       <div class="navbar-nav">
         <div>
           <!-- Botão para abrir o modal -->
-          <p id="empty-list-text">Ainda não há Clientes</p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModal">
-            <a>clique aqui para adicionar</a>
-          </button>
+          <div class="d-flex align-items-center justify-content-center ">
+            <h4 class="p-4 ">Ainda não há Clientes</h4>
+            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#meuModal">
+              <a>clique aqui para adicionar</a>
+            </button>
+          </div>
+
 
           <!-- Modal -->
           <div class="modal fade" id="meuModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
@@ -206,8 +226,8 @@ require_once("templates/header.php");
       </div>
     </div>
   <?php endif ?>
-</div>
+  </div>
 
-<?php
-require_once("templates/footer.php");
-?>
+  <?php
+  require_once("templates/footer.php");
+  ?>
