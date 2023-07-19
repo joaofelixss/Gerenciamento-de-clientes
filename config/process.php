@@ -34,7 +34,6 @@ if (!empty($post)) {
       $error = $e->getMessage();
       echo "Erro: $error";
     }
-
   } else if ($post['type'] === "edit") {
     $nome = $post['nome'];
     $telefone = $post['telefone'];
@@ -64,12 +63,11 @@ if (!empty($post)) {
       $error = $e->getMessage();
       echo "Erro: $error";
     }
-
   } else if ($post['type'] === "delete") {
 
     $id = $post['id'];
 
-    $query = "DELETE FROM clientes WHERE id = :id";           
+    $query = "DELETE FROM clientes WHERE id = :id";
 
     $concluir = $conn->prepare($query);
 
@@ -84,19 +82,19 @@ if (!empty($post)) {
       echo "Erro: $error";
     }
   }
+
   // Redirect HOME
   header("Location:" . $BASE_URL . "../index.php");
-
 } else {
-    
+
   $id;
 
-  if(!empty($_GET)) {
+  if (!empty($_GET)) {
     $id = $_GET["id"];
   }
 
   // Retorna o dado de um contato
-  if(!empty($id)) {
+  if (!empty($id)) {
 
     $query = "SELECT * FROM clientes WHERE id = :id";
 
@@ -107,19 +105,18 @@ if (!empty($post)) {
     $stmt->execute();
 
     $contact = $stmt->fetch();
-
   } else {
 
-  // Retorna todos os contatos
-  $clientes = [];
+    // Retorna todos os contatos
+    $clientes = [];
 
-  $query = "SELECT * FROM clientes";
+    $query = "SELECT * FROM clientes";
 
-  $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare($query);
 
-  $stmt->execute();
+    $stmt->execute();
 
-  $clientes = $stmt->fetchAll();
+    $clientes = $stmt->fetchAll();
   }
 }
 

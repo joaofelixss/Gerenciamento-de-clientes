@@ -49,6 +49,13 @@ if (isset($_SESSION['msg'])) {
     margin: 0 auto;
     margin-top: 30px;
   }
+
+  footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+  }
 </style>
 
 <body>

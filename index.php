@@ -1,9 +1,8 @@
 <?php
 require_once("templates/header.php");
 
-//verificar se houve uma pesquisa
-
 ?>
+
 <?php if (count($clientes) > 0) : ?>
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
@@ -13,6 +12,7 @@ require_once("templates/header.php");
     <form action="index.php" method="post">
       <div class="row">
         <div class="col-auto">
+          <input type="hidden" name="type" value="text_search">
           <input type="text" class="form-control" name="text_search" id="text_search" minlength="3" maxlength="20" required>
         </div>
         <div class="col-auto"><input type="submit" class="btn btn-outline-primary" value="Procurar"></div>
@@ -24,8 +24,8 @@ require_once("templates/header.php");
 
   <div class="container">
     <h1 class="text-center p-3">Meus Clientes</h1>
-    <table class="table text-center" id="contacts-table">
-      <thead>
+    <table class="table table-sm table-striped table-bordered text-center">
+      <thead class="bg-dark text-white">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nome</th>
@@ -37,11 +37,11 @@ require_once("templates/header.php");
       <tbody>
         <?php foreach ($clientes as $cliente) : ?>
           <tr>
-            <td scope="row" class="col-id"><?= $cliente['id'] ?></td>
+            <td scope="row"><?= $cliente['id'] ?></td>
             <td scope="row"><?= $cliente['nome'] ?></td>
             <td scope="row"><?= $cliente['preco'] ?></td>
             <td scope="row"><?= $cliente['data'] ?></td>
-            <td class="d-flex">
+            <td class="d-flex justify-content-center">
 
               <!-- =================== VISUALIZAR CLIENTE ========================== -->
 
@@ -226,6 +226,12 @@ require_once("templates/header.php");
       </div>
     </div>
   <?php endif ?>
+  <!-- total results -->
+  <div class="row">
+    <div class="col">
+      <p>Total: <strong><?= count($clientes) ?></strong> clientes listados</p>
+    </div>
+  </div>
   </div>
 
   <?php
