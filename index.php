@@ -1,5 +1,11 @@
 <?php
 require_once("templates/header.php");
+require_once("clientes.php");
+
+$cliente1 = new Clientes("João", "123456789", 100.00, "2023-07-19", "Observações sobre o cliente");
+$preco = $cliente1->getPreco();
+echo $preco;
+
 ?>
 
 <?php if (count($clientes) > 0) : ?>
