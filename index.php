@@ -1,31 +1,15 @@
 <?php
 require_once("templates/header.php");
-
 ?>
 
 <?php if (count($clientes) > 0) : ?>
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
   <?php endif; ?>
-  <!-- search & add new -->
-  <div class="d-flex justify-content-start p-4 ms-5">
-    <form action="index.php" method="post">
-      <div class="row">
-        <div class="col-auto">
-          <input type="hidden" name="type" value="text_search">
-          <input type="text" class="form-control" name="text_search" id="text_search" minlength="3" maxlength="20" required>
-        </div>
-        <div class="col-auto"><input type="submit" class="btn btn-outline-primary" value="Procurar"></div>
-        <div class="col-auto"><a href="index.php" class="btn btn-outline-primary">Ver tudo</a></div>
-      </div>
-    </form>
-
-  </div>
-
   <div class="container">
     <h1 class="text-center p-3">Meus Clientes</h1>
     <table class="table table-sm table-striped table-bordered text-center">
-      <thead class="bg-dark text-white">
+      <thead class="text-bg-primary">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nome</th>

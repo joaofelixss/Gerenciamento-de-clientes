@@ -5,6 +5,7 @@ O gerenciamento de clientes é uma aplicação Back-end web construída por min 
 A aplicação consiste em uma gestão e organização de seus clientes na sua empresa. Utilizando conexão com MySQL por meio do PDO no PHP.
 
 <div>
+  <img src="foto_updated.png">
   <img src="foto1.png">
   <img src="foto2.png">
   <img src="foto3.png">
