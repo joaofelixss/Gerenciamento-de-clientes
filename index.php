@@ -1,14 +1,16 @@
 <?php
 require_once("templates/header.php");
-require_once("clientes.php");
+require_once('clientes.php');
+require_once("clienteController.php");    
 
-$cliente1 = new Clientes("João", "123456789", 100.00, "2023-07-19", "Observações sobre o cliente");
-$preco = $cliente1->getPreco();
-echo $preco;
+// Instanciando o controlador de clientes
+$clienteController = new ClienteController();
 
+// Recuperando a lista de clientes
+$clientes = $clienteController->exibirClientes();
 ?>
 
-<?php if (count($clientes) > 0) : ?>
+<?php if ($clienteController->temClientes()) : ?>
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
   <?php endif; ?>
@@ -27,21 +29,21 @@ echo $preco;
       <tbody>
         <?php foreach ($clientes as $cliente) : ?>
           <tr>
-            <td scope="row"><?= $cliente['id'] ?></td>
-            <td scope="row"><?= $cliente['nome'] ?></td>
-            <td scope="row"><?= $cliente['preco'] ?></td>
-            <td scope="row"><?= $cliente['data'] ?></td>
+            <td scope="row"><?= $cliente->getId() ?></td>
+            <td scope="row"><?= $cliente->getNome() ?></td>
+            <td scope="row"><?= $cliente->getPreco() ?></td>
+            <td scope="row"><?= $cliente->getData() ?></td>
             <td class="d-flex justify-content-center">
 
               <!-- =================== VISUALIZAR CLIENTE ========================== -->
 
               <div>
                 <!-- Botão para abrir o modal 1-->
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal1<?= $cliente['id'] ?>">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal1<?= $cliente->getId() ?>">
                   <a><img src="<?= $BASE_URL ?>assets/eye.svg" alt="visualizar"></a>
                 </button>
                 <!-- Modal 1 -->
-                <div class="modal fade" id="meuModal1<?= $cliente['id'] ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal fade" id="meuModal1<?= $cliente->getId() ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -49,11 +51,11 @@ echo $preco;
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                       </div>
                       <div class="modal-body">
-                        <h1><?= $cliente["nome"] ?></h1>
+                        <h1><?= $cliente->getNome() ?></h1>
                         <br>
-                        <h6>Telefone: <?= $cliente["telefone"] ?></h6>
+                        <h6>Telefone: <?= $cliente->getTelefone() ?></h6>
                         <br>
-                        <h6>Observações: <?= $cliente["observacoes"] ?></h6>
+                        <h6>Observações: <?= $cliente->getObservacoes() ?></h6>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
@@ -67,11 +69,11 @@ echo $preco;
 
               <div>
                 <!-- Botão para abrir o modal2 -->
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2<?= $cliente['id'] ?>">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2<?= $cliente->getId()?>">
                   <a><img class=" img" src="<?= $BASE_URL ?>assets/edit.svg " alt="visualizar"></a>
                 </button>
                 <!-- Modal2 -->
-                <div class="modal fade" id="meuModal2<?= $cliente['id'] ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal fade" id="meuModal2<?= $cliente->getId() ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -81,26 +83,26 @@ echo $preco;
                       <div class="modal-body text-start">
                         <form action="<?= $BASE_URL ?>config/process.php" method="POST">
                           <input type="hidden" name="type" value="edit">
-                          <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
+                          <input type="hidden" name="id" value="<?= $cliente->getId() ?>">
                           <div class="form-group p-2">
                             <label for="nome">Nome do cliente</label>
-                            <input type="text" class="form-control " id="nome" name="nome" placeholder="nome do cliente" value="<?= $cliente['nome'] ?>" required>
+                            <input type="text" class="form-control " id="nome" name="nome" placeholder="nome do cliente" value="<?= $cliente->getNome() ?>" required>
                           </div>
                           <div class="form-group p-2">
                             <label for="telefone">Telefone do cliente</label>
-                            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="telefone do cliente" value="<?= $cliente['telefone'] ?>" required>
+                            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="telefone do cliente" value="<?= $cliente->getTelefone() ?>" required>
                           </div>
                           <div class="form-group p-2">
                             <label for="preco">Preço da Compra</label>
-                            <input type="text" class="form-control" id="preco" name="preco" placeholder="R$" value="<?= $cliente['preco'] ?>" required>
+                            <input type="text" class="form-control" id="preco" name="preco" placeholder="R$" value="<?= $cliente->getPreco() ?>" required>
                           </div>
                           <div class="form-group p-2">
                             <label for="data">Data da compra</label>
-                            <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" value="<?= $cliente['data'] ?>" required>
+                            <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" value="<?= $cliente->getData()?>" required>
                           </div>
                           <div class="form-group p-2">
                             <label for="observacoes">Observações:</label>
-                            <textarea type="text" class="form-control" id="observacoes" name="observacoes" placeholder="Insira as observações" rows="3"><?= $cliente['observacoes'] ?></textarea>
+                            <textarea type="text" class="form-control" id="observacoes" name="observacoes" placeholder="Insira as observações" rows="3"><?= $cliente->getObservacoes() ?></textarea>
                           </div>
                           <button type="submit" class="btn btn-primary">Atualizar cliente</button>
                         </form>
@@ -117,11 +119,11 @@ echo $preco;
 
               <div>
                 <!-- Botão para abrir o modal3 -->
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal3<?= $cliente['id'] ?>">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal3<?= $cliente->getId() ?>">
                   <a><img class=" img" src="<?= $BASE_URL ?>assets/trash2.svg " alt="visualizar"></a>
                 </button>
                 <!-- Modal3 -->
-                <div class="modal fade" id="meuModal3<?= $cliente['id'] ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal fade" id="meuModal3<?= $cliente->getId() ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -131,15 +133,15 @@ echo $preco;
                       <div class="modal-body text-start">
                         <form action="<?= $BASE_URL ?>config/process.php" method="POST">
                           <input type="hidden" name="type" value="delete">
-                          <input type="hidden" name="id" value="<?= $cliente['id'] ?>">
-                          <h1 class="text-center"><?= $cliente['nome'] ?></h1>
+                          <input type="hidden" name="id" value="<?= $cliente->getId() ?>">
+                          <h1 class="text-center"><?= $cliente->getNome() ?></h1>
                           <div class="form-group p-2">
                             <label for="data">Data da compra</label>
-                            <input type="text" class="form-control" id="data" name="data" disabled placeholder="01/01/2023" value="<?= $cliente['data'] ?>" required>
+                            <input type="text" class="form-control" id="data" name="data" disabled placeholder="01/01/2023" value="<?= $cliente->getData() ?>" required>
                           </div>
                           <div class="form-group p-2">
                             <label for="observacoes">Observações:</label>
-                            <textarea type="text" class="form-control" id="observacoes" disabled name="observacoes" placeholder="Insira as observações" rows="3"><?= $cliente['observacoes'] ?></textarea>
+                            <textarea type="text" class="form-control" id="observacoes" disabled name="observacoes" placeholder="Insira as observações" rows="3"><?= $cliente->getObservacoes() ?></textarea>
                           </div>
                           <button type="submit" class="btn btn-primary">Deseja mesmo excluir o cliente ?</button>
                         </form>

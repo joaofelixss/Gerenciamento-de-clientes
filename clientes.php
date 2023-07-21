@@ -1,45 +1,19 @@
 <?php
 
-class Clientes{
-  private $id;
-  private $nome;
-  private $telefone;
-  private $preco;
-  private $data;
-  private $observacoes;
+require_once('cliente.php');
 
-  public function __construct($nome, $telefone, $preco, $data, $observacoes){
-    $this->nome = $nome;
-    $this->telefone = $telefone;
-    $this->preco = $preco;
-    $this->data = $data;
-    $this->observacoes = $observacoes;
+class Clientes {
+  private $clientes = array();
+
+  // Método para adicionar um novo cliente à lista
+  public function adicionar($nome, $telefone, $preco, $data, $observacoes) {
+    $cliente = new Cliente($nome, $telefone, $preco, $data, $observacoes);
+    $this->clientes[] = $cliente;
   }
 
-  // Métodos Getters e Setters (acessores e modificadores) para cada propriedade
-
-  public function getId() {
-    return $this->id;
-  }
-
-  public function getNome() {
-    return $this->nome;
-  }
-
-  public function getTelefone() {
-    return $this->telefone;
-  }
-
-  public function getPreco() {
-    return $this->preco;
-  }
-
-  public function getData() {
-    return $this->data;
-  }
-
-  public function getObservacoes() {
-    return $this->observacoes;
+  // Método para listar todos os clientes
+  public function listarTodos() {
+    return $this->clientes;
   }
 
 }
