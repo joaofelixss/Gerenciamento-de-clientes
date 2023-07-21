@@ -50,6 +50,11 @@ class Cliente
     return $this->observacoes;
   }
 
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+
   public function setNome($nome)
   {
     $this->nome = $nome;

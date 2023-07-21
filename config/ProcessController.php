@@ -2,8 +2,8 @@
 
 class ProcessController
 {
-
   private $conn;
+
   // Construtor da classe (caso necessário)
   public function __construct($connection)
   {
@@ -15,11 +15,10 @@ class ProcessController
   // Método para adicionar um novo cliente
   public function adicionarCliente($nome, $telefone, $preco, $data, $observacoes)
   {
-    global $conn;
 
     $query = "INSERT INTO clientes(nome, telefone, preco, data, observacoes) VALUES (:nome, :telefone, :preco, :data, :observacoes)";
 
-    $concluir = $conn->prepare($query);
+    $concluir = $this->conn->prepare($query);
 
     $concluir->bindParam(":nome", $nome);
     $concluir->bindParam(":telefone", $telefone);
@@ -33,13 +32,12 @@ class ProcessController
   // Método para editar um cliente existente
   public function editarCliente($id, $nome, $telefone, $preco, $data, $observacoes)
   {
-    global $conn;
 
     $query = "UPDATE clientes
     SET nome = :nome, telefone = :telefone, preco = :preco, data = :data, observacoes = :observacoes
     WHERE id = :id";
 
-    $concluir = $conn->prepare($query);
+    $concluir = $this->conn->prepare($query);
 
     $concluir->bindParam(":nome", $nome);
     $concluir->bindParam(":telefone", $telefone);
@@ -54,11 +52,10 @@ class ProcessController
   // Método para excluir um cliente
   public function excluirCliente($id)
   {
-    global $conn;
 
     $query = "DELETE FROM clientes WHERE id = :id";
 
-    $concluir = $conn->prepare($query);
+    $concluir = $this->conn->prepare($query);
 
     $concluir->bindParam(":id", $id);
 

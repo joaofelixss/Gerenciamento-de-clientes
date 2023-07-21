@@ -1,19 +1,34 @@
 <?php
 
-require_once('cliente.php');
+require_once('Cliente.php');
 
 class ClienteController
 {
   private $clientes;
 
-  public function __construct()
+  public function __construct($connection)
   {
-    $this->clientes = new Clientes();
+    $this->clientes = new Clientes($connection);
   }
 
   public function exibirClientes()
   {
-    return $this->clientes->listarTodos();
+    $clientesData = $this->clientes->listarTodos();
+    $clientes = array();
+
+    foreach ($clientesData as $clienteData) {
+      $cliente = new Cliente();
+      $cliente->setId($clienteData['id']);
+      $cliente->setNome($clienteData['nome']);
+      $cliente->setTelefone($clienteData['telefone']);
+      $cliente->setPreco($clienteData['preco']);
+      $cliente->setData($clienteData['data']);
+      $cliente->setObservacoes($clienteData['observacoes']);
+
+      $clientes[] = $cliente;
+    }
+
+    return $clientes;
   }
 
   public function adicionarCliente($nome, $telefone, $preco, $data, $observacoes)
@@ -33,6 +48,6 @@ class ClienteController
 
   public function temClientes()
   {
-    return !empty($this->clientes);
+    return !empty($this->clientes->listarTodos());
   }
 }

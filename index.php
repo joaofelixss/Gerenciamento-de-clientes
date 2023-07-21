@@ -1,10 +1,12 @@
 <?php
+require_once("config/connection.php");
 require_once("templates/header.php");
-require_once('models/clientes.php');
-require_once("models/clienteController.php");    
+require_once('models/Clientes.php');
+require_once('models/Cliente.php');
+require_once("models/clienteController.php");
 
 // Instanciando o controlador de clientes
-$clienteController = new ClienteController();
+$clienteController = new ClienteController($conn);
 
 // Recuperando a lista de clientes
 $clientes = $clienteController->exibirClientes();
@@ -14,6 +16,7 @@ $clientes = $clienteController->exibirClientes();
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
   <?php endif; ?>
+
   <div class="container">
     <h1 class="text-center p-3">Meus Clientes</h1>
     <table class="table table-sm table-striped table-bordered text-center">
@@ -69,7 +72,7 @@ $clientes = $clienteController->exibirClientes();
 
               <div>
                 <!-- Botão para abrir o modal2 -->
-                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2<?= $cliente->getId()?>">
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2<?= $cliente->getId() ?>">
                   <a><img class=" img" src="<?= $BASE_URL ?>assets/edit.svg " alt="visualizar"></a>
                 </button>
                 <!-- Modal2 -->
@@ -98,7 +101,7 @@ $clientes = $clienteController->exibirClientes();
                           </div>
                           <div class="form-group p-2">
                             <label for="data">Data da compra</label>
-                            <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" value="<?= $cliente->getData()?>" required>
+                            <input type="text" class="form-control" id="data" name="data" placeholder="01/01/2023" value="<?= $cliente->getData() ?>" required>
                           </div>
                           <div class="form-group p-2">
                             <label for="observacoes">Observações:</label>

@@ -26,12 +26,12 @@ if (!empty($post)) {
 
     $_SESSION["msg"] = "Cliente adicionado com sucesso";
   } else if ($post['type'] === "edit") {
+    $id = $post['id'];
     $nome = $post['nome'];
     $telefone = $post['telefone'];
     $preco = $post['preco'];
     $data = $post['data'];
     $observacoes = $post['observacoes'];
-    $id = $post['id'];
 
     $processController->editarCliente($id, $nome, $telefone, $preco, $data, $observacoes);
 
@@ -81,6 +81,3 @@ if (!empty($post)) {
     $clientes = $stmt->fetchAll();
   }
 }
-
-// FECHAR CONEXÃO
-$conn = null;

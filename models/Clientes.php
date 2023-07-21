@@ -4,46 +4,63 @@ require_once('cliente.php');
 
 class Clientes
 {
-  private $clientes = array();
+  private $conn;
 
-  // Método para adicionar um novo cliente à lista
+  // Construtor da classe (recebe a conexão com o banco de dados)
+  public function __construct($connection)
+  {
+    $this->conn = $connection;
+  }
+
+  // Método para adicionar um novo cliente ao banco de dados
   public function adicionar($nome, $telefone, $preco, $data, $observacoes)
   {
-    $cliente = new Cliente($nome, $telefone, $preco, $data, $observacoes);
-    $this->clientes[] = $cliente;
+    $query = "INSERT INTO clientes(nome, telefone, preco, data, observacoes) VALUES (:nome, :telefone, :preco, :data, :observacoes)";
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(":nome", $nome);
+    $stmt->bindParam(":telefone", $telefone);
+    $stmt->bindParam(":preco", $preco);
+    $stmt->bindParam(":data", $data);
+    $stmt->bindParam(":observacoes", $observacoes);
+
+    return $stmt->execute(); // Retorna true se a inserção foi bem sucedida, ou false caso contrário.
   }
 
-  // Método para listar todos os clientes
+  // Método para listar todos os clientes do banco de dados
   public function listarTodos()
   {
-    return $this->clientes;
+    $query = "SELECT * FROM clientes";
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetchAll(); // Retorna um array com todos os clientes encontrados no banco de dados.
   }
 
-  // Método para editar um cliente existente na lista
+  // Método para editar um cliente existente no banco de dados
   public function editar($id, $nome, $telefone, $preco, $data, $observacoes)
   {
-    foreach ($this->clientes as $cliente) {
-      if ($cliente->getId() === $id) {
-        $cliente->setNome($nome);
-        $cliente->setTelefone($telefone);
-        $cliente->setPreco($preco);
-        $cliente->setData($data);
-        $cliente->setObservacoes($observacoes);
-        break;
-      }
-    }
+    $query = "UPDATE clientes SET nome = :nome, telefone = :telefone, preco = :preco, data = :data, observacoes = :observacoes WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(":nome", $nome);
+    $stmt->bindParam(":telefone", $telefone);
+    $stmt->bindParam(":preco", $preco);
+    $stmt->bindParam(":data", $data);
+    $stmt->bindParam(":observacoes", $observacoes);
+    $stmt->bindParam(":id", $id);
+
+    return $stmt->execute(); // Retorna true se a atualização foi bem sucedida, ou false caso contrário.
   }
 
-  // Método para excluir um cliente da lista
+  // Método para excluir um cliente do banco de dados
   public function excluir($id)
   {
-    foreach ($this->clientes as $key => $cliente) {
-      if ($cliente->getId() === $id) {
-        unset($this->clientes[$key]);
-        break;
-      }
-    }
-    // Reindexar o array após excluir um elemento
-    $this->clientes = array_values($this->clientes);
+    $query = "DELETE FROM clientes WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bindParam(":id", $id);
+
+    return $stmt->execute(); // Retorna true se a exclusão foi bem sucedida, ou false caso contrário.
   }
 }
