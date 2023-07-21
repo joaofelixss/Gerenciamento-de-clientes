@@ -4,11 +4,17 @@ session_start();
 
 include_once("connection.php");
 include_once("url.php");
+require_once("models/clientes.php");
+require_once("models/cliente.php");
+require_once("ProcessController.php");
 
 $post = $_POST;
 
 if (!empty($post)) {
+  // Instancie a classe ProcessController
+  $processController = new ProcessController($conn);
 
+  // Verifique o tipo de requisição e chame o método apropriado do ProcessController
   if ($post['type'] === "create") {
     $nome = $post['nome'];
     $telefone = $post['telefone'];
@@ -16,24 +22,9 @@ if (!empty($post)) {
     $data = $post['data'];
     $observacoes = $post['observacoes'];
 
-    $query = "INSERT INTO clientes(nome, telefone, preco, data, observacoes) VALUES (:nome, :telefone, :preco, :data, :observacoes)";
+    $processController->adicionarCliente($nome, $telefone, $preco, $data, $observacoes);
 
-    $concluir = $conn->prepare($query);
-
-    $concluir->bindParam(":nome", $nome);
-    $concluir->bindParam(":telefone", $telefone);
-    $concluir->bindParam(":preco", $preco);
-    $concluir->bindParam(":data", $data);
-    $concluir->bindParam(":observacoes", $observacoes);
-
-    try {
-
-      $concluir->execute();
-      $_SESSION["msg"] = "Cliente adicionado com sucesso";
-    } catch (PDOException $e) {
-      $error = $e->getMessage();
-      echo "Erro: $error";
-    }
+    $_SESSION["msg"] = "Cliente adicionado com sucesso";
   } else if ($post['type'] === "edit") {
     $nome = $post['nome'];
     $telefone = $post['telefone'];
@@ -42,45 +33,16 @@ if (!empty($post)) {
     $observacoes = $post['observacoes'];
     $id = $post['id'];
 
-    $query = "UPDATE clientes
-              SET nome = :nome, telefone = :telefone, preco = :preco, data = :data, observacoes = :observacoes
-              WHERE id = :id";
+    $processController->editarCliente($id, $nome, $telefone, $preco, $data, $observacoes);
 
-    $concluir = $conn->prepare($query);
-
-    $concluir->bindParam(":nome", $nome);
-    $concluir->bindParam(":telefone", $telefone);
-    $concluir->bindParam(":preco", $preco);
-    $concluir->bindParam(":data", $data);
-    $concluir->bindParam(":observacoes", $observacoes);
-    $concluir->bindParam(":id", $id);
-
-    try {
-
-      $concluir->execute();
-      $_SESSION["msg"] = "Cliente atualizado com sucesso";
-    } catch (PDOException $e) {
-      $error = $e->getMessage();
-      echo "Erro: $error";
-    }
+    $_SESSION["msg"] = "Cliente atualizado com sucesso";
   } else if ($post['type'] === "delete") {
 
     $id = $post['id'];
 
-    $query = "DELETE FROM clientes WHERE id = :id";
+    $processController->excluirCliente($id);
 
-    $concluir = $conn->prepare($query);
-
-    $concluir->bindParam(":id", $id);
-
-    try {
-
-      $concluir->execute();
-      $_SESSION["msg"] = "Cliente removido com sucesso";
-    } catch (PDOException $e) {
-      $error = $e->getMessage();
-      echo "Erro: $error";
-    }
+    $_SESSION["msg"] = "Cliente removido com sucesso";
   }
 
   // Redirect HOME

@@ -1,7 +1,7 @@
 <?php
 require_once("templates/header.php");
-require_once('clientes.php');
-require_once("clienteController.php");    
+require_once('models/clientes.php');
+require_once("models/clienteController.php");    
 
 // Instanciando o controlador de clientes
 $clienteController = new ClienteController();
