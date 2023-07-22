@@ -1,4 +1,4 @@
-# JF-Gerenciamento_clientes
+# Gerenciamento-de-clientes
 
 Este é um projeto de gerenciamento de clientes desenvolvido em PHP, utilizando o paradigma de programação orientada a objetos (POO). O objetivo do projeto é permitir que o usuário cadastre, visualize, edite e exclua clientes de uma base de dados.
 
