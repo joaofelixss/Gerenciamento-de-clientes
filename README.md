@@ -26,10 +26,6 @@ Contribuições são bem-vindas! Se você encontrou algum bug, tem alguma sugest
 
 Este projeto está sob a licença [MIT](LICENSE).
 
-## Contato
-
-Se tiver alguma dúvida ou quiser entrar em contato, você pode me encontrar através do email [seuemail@example.com] ou nas redes sociais [link para suas redes sociais].
-
 ## Status do Projeto
 
 O projeto está em desenvolvimento ativo e novas funcionalidades podem ser adicionadas no futuro.
@@ -72,8 +68,9 @@ O projeto está em desenvolvimento ativo e novas funcionalidades podem ser adici
 [![My Skills](https://skillicons.dev/icons?i=php,mysql,bootstrap,git,html,figma)](https://skillicons.dev)
 
 # Autor
+🧑‍💻 João Félix Santana de Sousa
 
-João Félix Santana de Sousa
-
+## Contato
+Se tiver alguma dúvida ou quiser entrar em contato,<br> você pode me encontrar através das minhas redes sociais abaixo:<br>
 Meu Linkedin: https://www.linkedin.com/in/joaofelixss<br>
 Meu Portifólio: https://www.joaofelixss.github.io
