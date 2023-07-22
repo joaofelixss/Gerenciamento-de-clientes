@@ -4,8 +4,8 @@ session_start();
 
 include_once("connection.php");
 include_once("url.php");
-require_once("models/clientes.php");
-require_once("models/cliente.php");
+require_once(__DIR__ . "/../models/Clientes.php");
+require_once(__DIR__ . "/../models/Cliente.php");
 require_once("ProcessController.php");
 
 $post = $_POST;
