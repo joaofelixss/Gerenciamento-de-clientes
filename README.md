@@ -1,4 +1,4 @@
-# Gerenciamento-de-clientes
+# Gerenciamento de clientes
 
 Este é um projeto de gerenciamento de clientes desenvolvido em PHP, utilizando o paradigma de programação orientada a objetos (POO). O objetivo do projeto é permitir que o usuário cadastre, visualize, edite e exclua clientes de uma base de dados.
 
@@ -75,4 +75,5 @@ O projeto está em desenvolvimento ativo e novas funcionalidades podem ser adici
 
 João Félix Santana de Sousa
 
-https://www.linkedin.com/in/joaofelixss
+Meu Linkedin: https://www.linkedin.com/in/joaofelixss<br>
+Meu Portifólio: https://www.joaofelixss.github.io
