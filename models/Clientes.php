@@ -25,13 +25,13 @@ class Clientes
     $stmt->bindParam(":observacoes", $observacoes);
 
     try {
-      return $stmt->execute();
+      $stmt->execute();
+      // Retornamos o id do último registro inserido
+      return $this->conn->lastInsertId();
     } catch (PDOException $e) {
       echo $e->getMessage();
+      return false;
     }
-
-    // Retornamos o id do último registro inserido
-    return $this->conn->lastInsertId();
   }
 
   // Método para listar todos os clientes do banco de dados

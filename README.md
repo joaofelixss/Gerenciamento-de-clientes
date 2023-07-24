@@ -53,14 +53,14 @@ O projeto está em desenvolvimento ativo e novas funcionalidades podem ser adici
 🎉 Espero que vocês gostem desse projeto tanto quanto eu gostei de desenvolvê-lo. Sintam-se à vontade para explorar, sugerir melhorias e até mesmo utilizá-lo em seus próprios projetos.
 
 <div>
-  <img src="foto_updated.png">
-  <img src="foto1.png">
-  <img src="foto2.png">
-  <img src="foto3.png">
-  <img src="foto4.png">
-  <img src="foto5.png">
-  <img src="foto6.png">
-  <img src="foto7.png">
+  <img src="./assets/img/foto_updated.png">
+  <img src="./assets/img/foto1.png">
+  <img src="./assets/img/foto2.png">
+  <img src="./assets/img/foto3.png">
+  <img src="./assets/img/foto4.png">
+  <img src="./assets/img/foto5.png">
+  <img src="./assets/img/foto6.png">
+  <img src="./assets/img/foto7.png">
 </div>
 
 # Tecnologias utilizadas

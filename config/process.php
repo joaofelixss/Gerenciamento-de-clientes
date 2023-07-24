@@ -6,7 +6,7 @@ include_once("connection.php");
 include_once("url.php");
 require_once(__DIR__ . "/../models/Clientes.php");
 require_once(__DIR__ . "/../models/Cliente.php");
-require_once("ProcessController.php");
+require_once(__DIR__ . "/../controllers/ProcessController.php");
 
 $post = $_POST;
 
@@ -40,7 +40,7 @@ if (!empty($post)) {
     $resultado = $processController->editarCliente($id, $nome, $telefone, $preco, $data, $observacoes);
 
     if ($resultado) {
-      $_SESSION["msg"] = "Cliente atualizado com sucesso, ID: " . $resultado;
+      $_SESSION["msg"] = "Cliente atualizado com sucesso";
     } else {
       $_SESSION["msg"] = "Falha ao atualizar cliente";
     }
@@ -50,14 +50,14 @@ if (!empty($post)) {
 
     $resultado = $processController->excluirCliente($id);
     if ($resultado) {
-      $_SESSION["msg"] = "Cliente removido com sucesso, ID: " . $resultado;
+      $_SESSION["msg"] = "Cliente removido com sucesso";
     } else {
       $_SESSION["msg"] = "Falha ao remover cliente";
     }
   }
 
   // Redirect HOME
-  header("Location:" . $BASE_URL . "../index.php");
+  header("Location:" . $BASE_URL . "views/index.php");
 } else {
 
   $id;

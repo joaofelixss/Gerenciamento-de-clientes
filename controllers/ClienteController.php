@@ -1,6 +1,6 @@
 <?php
 
-require_once('Cliente.php');
+require_once(__DIR__ . "/../models/Cliente.php");
 
 class ClienteController
 {

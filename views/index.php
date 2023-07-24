@@ -1,9 +1,9 @@
 <?php
-require_once("config/connection.php");
-require_once("templates/header.php");
-require_once('models/Clientes.php');
-require_once('models/Cliente.php');
-require_once("models/clienteController.php");
+require_once(__DIR__ . "/../config/connection.php");
+require_once(__DIR__ . "/../templates/header.php");
+require_once(__DIR__ . "/../models/Clientes.php");
+require_once(__DIR__ . "/../models/Cliente.php");
+require_once(__DIR__ . "/../controllers/clienteController.php");
 
 // Instanciando o controlador de clientes
 $clienteController = new ClienteController($conn);
@@ -43,7 +43,7 @@ $clientes = $clienteController->exibirClientes();
               <div>
                 <!-- Botão para abrir o modal 1-->
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal1<?= $cliente->getId() ?>">
-                  <a><img src="<?= $BASE_URL ?>assets/eye.svg" alt="visualizar"></a>
+                  <a><img src="<?= $BASE_URL ?>../assets/eye.svg" alt="visualizar"></a>
                 </button>
                 <!-- Modal 1 -->
                 <div class="modal fade" id="meuModal1<?= $cliente->getId() ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
@@ -73,7 +73,7 @@ $clientes = $clienteController->exibirClientes();
               <div>
                 <!-- Botão para abrir o modal2 -->
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal2<?= $cliente->getId() ?>">
-                  <a><img class=" img" src="<?= $BASE_URL ?>assets/edit.svg " alt="visualizar"></a>
+                  <a><img class=" img" src="<?= $BASE_URL ?>../assets/edit.svg " alt="visualizar"></a>
                 </button>
                 <!-- Modal2 -->
                 <div class="modal fade" id="meuModal2<?= $cliente->getId() ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
@@ -84,7 +84,7 @@ $clientes = $clienteController->exibirClientes();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                       </div>
                       <div class="modal-body text-start">
-                        <form action="<?= $BASE_URL ?>config/process.php" method="POST">
+                        <form action="<?= $BASE_URL ?>../config/process.php" method="POST">
                           <input type="hidden" name="type" value="edit">
                           <input type="hidden" name="id" value="<?= $cliente->getId() ?>">
                           <div class="form-group p-2">
@@ -123,7 +123,7 @@ $clientes = $clienteController->exibirClientes();
               <div>
                 <!-- Botão para abrir o modal3 -->
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#meuModal3<?= $cliente->getId() ?>">
-                  <a><img class=" img" src="<?= $BASE_URL ?>assets/trash2.svg " alt="visualizar"></a>
+                  <a><img class=" img" src="<?= $BASE_URL ?>../assets/trash2.svg " alt="visualizar"></a>
                 </button>
                 <!-- Modal3 -->
                 <div class="modal fade" id="meuModal3<?= $cliente->getId() ?>" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
@@ -134,7 +134,7 @@ $clientes = $clienteController->exibirClientes();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                       </div>
                       <div class="modal-body text-start">
-                        <form action="<?= $BASE_URL ?>config/process.php" method="POST">
+                        <form action="<?= $BASE_URL ?>../config/process.php" method="POST">
                           <input type="hidden" name="type" value="delete">
                           <input type="hidden" name="id" value="<?= $cliente->getId() ?>">
                           <h1 class="text-center"><?= $cliente->getNome() ?></h1>
@@ -186,7 +186,7 @@ $clientes = $clienteController->exibirClientes();
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
-                  <form id="create-form" action="<?= $BASE_URL ?>config/process.php" method="POST">
+                  <form id="create-form" action="<?= $BASE_URL ?>../config/process.php" method="POST">
                     <input type="hidden" name="type" value="create">
                     <div class="form-group p-2">
                       <label for="nome">Nome do cliente</label>
@@ -230,5 +230,5 @@ $clientes = $clienteController->exibirClientes();
   </div>
 
   <?php
-  require_once("templates/footer.php");
+  require_once(__DIR__ . "/../templates/footer.php");
   ?>

@@ -1,6 +1,6 @@
 <?php
-require_once("config/process.php");
-require_once("config/url.php");
+require_once(__DIR__ . "/../config/process.php");
+require_once(__DIR__ . "/../config/url.php");
 
 // limpa a mensagem
 if (isset($_SESSION['msg'])) {
@@ -16,7 +16,7 @@ if (isset($_SESSION['msg'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerenciamento de Clientes</title>
-  <link rel="stylesheet" href="<?= $BASE_URL ?>assets/Bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= $BASE_URL ?>../assets/Bootstrap/bootstrap.min.css">
 </head>
 
 <style>
@@ -50,7 +50,7 @@ if (isset($_SESSION['msg'])) {
     margin-top: 30px;
   }
 
-  footer{
+  footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -66,7 +66,7 @@ if (isset($_SESSION['msg'])) {
           <div>
             <!-- Botão para abrir o modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meuModal1">
-              <a>Adicionar Clientes<img src="<?= $BASE_URL ?>assets/pessoa.svg" alt="add"></a>
+              <a>Adicionar Clientes<img src="<?= $BASE_URL ?>../assets/pessoa.svg" alt="add"></a>
             </button>
 
             <!-- Modal -->
@@ -78,7 +78,7 @@ if (isset($_SESSION['msg'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                   </div>
                   <div class="modal-body">
-                    <form id="create-form" action="<?= $BASE_URL ?>config/process.php" method="POST">
+                    <form id="create-form" action="<?= $BASE_URL ?>../config/process.php" method="POST">
                       <input type="hidden" name="type" value="create">
                       <div class="form-group p-2">
                         <label for="nome">Nome do cliente</label>
