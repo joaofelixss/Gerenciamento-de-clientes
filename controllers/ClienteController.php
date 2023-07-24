@@ -4,12 +4,22 @@ require_once(__DIR__ . "/../models/Cliente.php");
 
 class ClienteController
 {
+  private $conn;
   private $clientes;
 
+  // Construtor da classe (caso necessário)
   public function __construct($connection)
   {
-    $this->clientes = new Clientes($connection);
+    $this->conn = $connection;
+    $this->clientes = new Clientes($connection); //Instanciamos o objeto Clientes
   }
+
+  public function temClientes()
+  {
+    return !empty($this->clientes->listarTodos());
+  }
+
+  // Métodos para processar as requisições
 
   public function exibirClientes()
   {
@@ -31,23 +41,24 @@ class ClienteController
     return $clientes;
   }
 
+  // Método para adicionar um novo cliente
   public function adicionarCliente($nome, $telefone, $preco, $data, $observacoes)
   {
-    $this->clientes->adicionar($nome, $telefone, $preco, $data, $observacoes);
+    // Chamamos o método adicionar do objeto Clientes
+    return $this->clientes->adicionar($nome, $telefone, $preco, $data, $observacoes);
   }
 
+  // Método para editar um cliente existente
   public function editarCliente($id, $nome, $telefone, $preco, $data, $observacoes)
   {
-    $this->clientes->editar($id, $nome, $telefone, $preco, $data, $observacoes);
+    // Chamamos o método adicionar do objeto Clientes
+    return $this->clientes->editar($id, $nome, $telefone, $preco, $data, $observacoes);
   }
 
+  // Método para excluir um cliente
   public function excluirCliente($id)
   {
-    $this->clientes->excluir($id);
-  }
-
-  public function temClientes()
-  {
-    return !empty($this->clientes->listarTodos());
+    // Chamamos o método adicionar do objeto Clientes
+    return $this->clientes->excluir($id);
   }
 }
