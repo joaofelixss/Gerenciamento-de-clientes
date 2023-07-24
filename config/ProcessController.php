@@ -3,11 +3,13 @@
 class ProcessController
 {
   private $conn;
+  private $clientes;
 
   // Construtor da classe (caso necessário)
   public function __construct($connection)
   {
     $this->conn = $connection;
+    $this->clientes = new Clientes($connection); //Instanciamos o objeto Clientes
   }
 
   // Métodos para processar as requisições
@@ -16,50 +18,31 @@ class ProcessController
   public function adicionarCliente($nome, $telefone, $preco, $data, $observacoes)
   {
 
-    $query = "INSERT INTO clientes(nome, telefone, preco, data, observacoes) VALUES (:nome, :telefone, :preco, :data, :observacoes)";
+    // Chamamos o método adicionar do objeto Clientes
+    $resultado = $this->clientes->adicionar($nome, $telefone, $preco, $data, $observacoes);
 
-    $concluir = $this->conn->prepare($query);
-
-    $concluir->bindParam(":nome", $nome);
-    $concluir->bindParam(":telefone", $telefone);
-    $concluir->bindParam(":preco", $preco);
-    $concluir->bindParam(":data", $data);
-    $concluir->bindParam(":observacoes", $observacoes);
-
-    $concluir->execute();
+    // Agora $resultado contém o id do último registro inserido
+    return $resultado; // Retorna true se a inserção foi bem sucedida, ou false caso contrário.
   }
 
   // Método para editar um cliente existente
   public function editarCliente($id, $nome, $telefone, $preco, $data, $observacoes)
   {
 
-    $query = "UPDATE clientes
-    SET nome = :nome, telefone = :telefone, preco = :preco, data = :data, observacoes = :observacoes
-    WHERE id = :id";
+    // Chamamos o método adicionar do objeto Clientes
+    $resultado = $this->clientes->editar($id, $nome, $telefone, $preco, $data, $observacoes);
 
-    $concluir = $this->conn->prepare($query);
-
-    $concluir->bindParam(":nome", $nome);
-    $concluir->bindParam(":telefone", $telefone);
-    $concluir->bindParam(":preco", $preco);
-    $concluir->bindParam(":data", $data);
-    $concluir->bindParam(":observacoes", $observacoes);
-    $concluir->bindParam(":id", $id);
-
-    $concluir->execute();
+    return $resultado; // Retorna true se a inserção foi bem sucedida, ou false caso contrário.
   }
 
   // Método para excluir um cliente
   public function excluirCliente($id)
   {
 
-    $query = "DELETE FROM clientes WHERE id = :id";
+    // Chamamos o método adicionar do objeto Clientes
+    $resultado = $this->clientes->excluir($id);
 
-    $concluir = $this->conn->prepare($query);
-
-    $concluir->bindParam(":id", $id);
-
-    $concluir->execute();
+    return $resultado; // Retorna true se a inserção foi bem sucedida, ou false caso contrário.
   }
 
   // Outros métodos conforme necessário

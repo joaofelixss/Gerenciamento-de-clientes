@@ -24,7 +24,14 @@ class Clientes
     $stmt->bindParam(":data", $data);
     $stmt->bindParam(":observacoes", $observacoes);
 
-    return $stmt->execute(); // Retorna true se a inserção foi bem sucedida, ou false caso contrário.
+    try {
+      return $stmt->execute();
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+
+    // Retornamos o id do último registro inserido
+    return $this->conn->lastInsertId();
   }
 
   // Método para listar todos os clientes do banco de dados

@@ -22,9 +22,13 @@ if (!empty($post)) {
     $data = $post['data'];
     $observacoes = $post['observacoes'];
 
-    $processController->adicionarCliente($nome, $telefone, $preco, $data, $observacoes);
+    $resultado = $processController->adicionarCliente($nome, $telefone, $preco, $data, $observacoes);
 
-    $_SESSION["msg"] = "Cliente adicionado com sucesso";
+    if ($resultado) {
+      $_SESSION["msg"] = "Cliente adicionado com sucesso, ID: " . $resultado;
+    } else {
+      $_SESSION["msg"] = "Falha ao adicionar cliente";
+    }
   } else if ($post['type'] === "edit") {
     $id = $post['id'];
     $nome = $post['nome'];
@@ -33,16 +37,23 @@ if (!empty($post)) {
     $data = $post['data'];
     $observacoes = $post['observacoes'];
 
-    $processController->editarCliente($id, $nome, $telefone, $preco, $data, $observacoes);
+    $resultado = $processController->editarCliente($id, $nome, $telefone, $preco, $data, $observacoes);
 
-    $_SESSION["msg"] = "Cliente atualizado com sucesso";
+    if ($resultado) {
+      $_SESSION["msg"] = "Cliente atualizado com sucesso, ID: " . $resultado;
+    } else {
+      $_SESSION["msg"] = "Falha ao atualizar cliente";
+    }
   } else if ($post['type'] === "delete") {
 
     $id = $post['id'];
 
-    $processController->excluirCliente($id);
-
-    $_SESSION["msg"] = "Cliente removido com sucesso";
+    $resultado = $processController->excluirCliente($id);
+    if ($resultado) {
+      $_SESSION["msg"] = "Cliente removido com sucesso, ID: " . $resultado;
+    } else {
+      $_SESSION["msg"] = "Falha ao remover cliente";
+    }
   }
 
   // Redirect HOME
