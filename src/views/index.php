@@ -1,7 +1,9 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once(__DIR__ . "/../templates/header.php");
+require_once(__DIR__ . "/../../templates/header.php");
 
 use Felix\JfGerenciamentoClientes\config\Connection;
 use Felix\JfGerenciamentoClientes\controllers\ClienteController;
@@ -236,5 +238,5 @@ $clientes = $clienteController->exibirClientes();
   </div>
 
   <?php
-  require_once(__DIR__ . "/../templates/footer.php");
+  require_once(__DIR__ . "/../../templates/footer.php");
   ?>

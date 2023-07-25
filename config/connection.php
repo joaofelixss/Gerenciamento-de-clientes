@@ -1,27 +1,27 @@
-  <?php
+<?php
 
-  namespace Felix\JfGerenciamentoClientes\config;
+namespace Felix\JfGerenciamentoClientes\config;
 
-  class Connection
+class Connection
+{
+  private $host = 'localhost';
+  private $dbname = 'jf-gerenciamento_clientes';
+  private  $user = 'root';
+  private  $pass = '';
+  public $conn;
+
+  public function getConnection()
   {
-    private $host = 'localhost';
-    private $dbname = 'jf-gerenciamento_clientes';
-    private  $user = 'root';
-    private  $pass = '';
-    public $conn;
 
-    public function getConnection()
-    {
+    $this->conn = null;
 
-      $this->conn = null;
-
-      try {
-        $this->conn = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname, $this->user, $this->pass);
-        $this->conn->exec("set names utf8");
-      } catch (\PDOException $e) {
-        echo "Erro na conexão: " . $e->getMessage();
-      }
-
-      return $this->conn;
+    try {
+      $this->conn = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname, $this->user, $this->pass);
+      $this->conn->exec("set names utf8");
+    } catch (\PDOException $e) {
+      echo "Erro na conexão: " . $e->getMessage();
     }
+
+    return $this->conn;
   }
+}

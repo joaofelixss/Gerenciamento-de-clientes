@@ -3,7 +3,8 @@
     "description": "Primeiro Projeto em POO",
     "autoload": {
         "psr-4": {
-            "Felix\\JfGerenciamentoClientes\\": "src/"
+            "Felix\\JfGerenciamentoClientes\\": "src/",
+            "Felix\\JfGerenciamentoClientes\\config\\": "config/"
         }
     },
     "authors": [
