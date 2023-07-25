@@ -10,6 +10,11 @@ require_once(__DIR__ . "/../controllers/ClienteController.php");
 $post = $_POST;
 
 if (!empty($post)) {
+
+  // Instancie a classe Connection e obtenha a conexão
+  $database = new Connection();
+  $conn = $database->getConnection();
+
   // Instancie a classe ClienteController
   $ClienteController = new ClienteController($conn);
 

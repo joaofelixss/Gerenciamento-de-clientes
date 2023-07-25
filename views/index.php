@@ -2,6 +2,10 @@
 
 require_once(__DIR__ . "/../templates/header.php");
 
+// Instancie a classe Connection e obtenha a conexão
+$database = new Connection();
+$conn = $database->getConnection();
+
 // Instanciando o controlador de clientes
 $clienteController = new ClienteController($conn);
 
