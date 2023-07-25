@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . "/../config/process.php");
+
+require_once __DIR__ . "/../config/url.php";
 
 // limpa a mensagem
 if (isset($_SESSION['msg'])) {
@@ -9,7 +10,7 @@ if (isset($_SESSION['msg'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en pt-br">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">

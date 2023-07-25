@@ -1,5 +1,7 @@
 <?php
 
+namespace Felix\JfGerenciamentoClientes\models;
+
 class Cliente
 {
   private $id;

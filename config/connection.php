@@ -1,5 +1,7 @@
   <?php
 
+  namespace Felix\JfGerenciamentoClientes\config;
+
   class Connection
   {
     private $host = 'localhost';
@@ -14,9 +16,9 @@
       $this->conn = null;
 
       try {
-        $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname, $this->user, $this->pass);
+        $this->conn = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname, $this->user, $this->pass);
         $this->conn->exec("set names utf8");
-      } catch (PDOException $e) {
+      } catch (\PDOException $e) {
         echo "Erro na conexão: " . $e->getMessage();
       }
 

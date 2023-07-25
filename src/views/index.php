@@ -1,6 +1,10 @@
 <?php
 
+require_once __DIR__ . '/../../vendor/autoload.php';
 require_once(__DIR__ . "/../templates/header.php");
+
+use Felix\JfGerenciamentoClientes\config\Connection;
+use Felix\JfGerenciamentoClientes\controllers\ClienteController;
 
 // Instancie a classe Connection e obtenha a conexão
 $database = new Connection();

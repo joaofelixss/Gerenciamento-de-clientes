@@ -1,6 +1,9 @@
 <?php
 
-require_once(__DIR__ . "/../models/Cliente.php");
+namespace Felix\JfGerenciamentoClientes\controllers;
+
+use Felix\JfGerenciamentoClientes\models\Cliente;
+use Felix\JfGerenciamentoClientes\models\Clientes;
 
 class ClienteController
 {

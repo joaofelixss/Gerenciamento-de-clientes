@@ -1,11 +1,15 @@
 <?php
 
+namespace Felix\JfGerenciamentoClientes\config;
+
 session_start();
 
-require_once("connection.php");
-require_once("url.php");
-require_once(__DIR__ . "/../models/Clientes.php");
-require_once(__DIR__ . "/../controllers/ClienteController.php");
+require_once __DIR__ . "/../vendor/autoload.php";
+require_once(__DIR__ . "/url.php");
+
+use Felix\JfGerenciamentoClientes\models\Clientes;
+use Felix\JfGerenciamentoClientes\controllers\ClienteController;
+use Felix\JfGerenciamentoClientes\config\Connection;
 
 $post = $_POST;
 
@@ -14,6 +18,9 @@ if (!empty($post)) {
   // Instancie a classe Connection e obtenha a conexão
   $database = new Connection();
   $conn = $database->getConnection();
+
+  // Instancie a classe Clientes
+  $clientes = new Clientes($conn);
 
   // Instancie a classe ClienteController
   $ClienteController = new ClienteController($conn);
@@ -61,5 +68,5 @@ if (!empty($post)) {
   }
 
   // Redirect HOME
-  header("Location:" . $BASE_URL . "views/index.php");
+  header("Location:" . $BASE_URL . "src/views/index.php");
 }

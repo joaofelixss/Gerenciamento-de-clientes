@@ -1,6 +1,6 @@
 <?php
 
-require_once('cliente.php');
+namespace Felix\JfGerenciamentoClientes\models;
 
 class Clientes
 {
@@ -28,7 +28,7 @@ class Clientes
       $stmt->execute();
       // Retornamos o id do último registro inserido
       return $this->conn->lastInsertId();
-    } catch (PDOException $e) {
+    } catch (\PDOException $e) {
       echo $e->getMessage();
       return false;
     }

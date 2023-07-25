@@ -1,0 +1,16 @@
+{
+    "name": "felix/jf-gerenciamento_clientes",
+    "description": "Primeiro Projeto em POO",
+    "autoload": {
+        "psr-4": {
+            "Felix\\JfGerenciamentoClientes\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "João Félix",
+            "email": "felixjoao651@gmail.com"
+        }
+    ],
+    "require": {}
+}
