@@ -17,11 +17,6 @@ class ClienteController
     $this->clientes = new Clientes($connection); //Instanciamos o objeto Clientes
   }
 
-  public function temClientes()
-  {
-    return !empty($this->clientes->listarTodos());
-  }
-
   // Métodos para processar as requisições
 
   public function exibirClientes()

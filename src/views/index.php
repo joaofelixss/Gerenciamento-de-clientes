@@ -5,22 +5,17 @@ session_start();
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once(__DIR__ . "/../../templates/header.php");
 
-use Felix\JfGerenciamentoClientes\config\Connection;
-use Felix\JfGerenciamentoClientes\controllers\ClienteController;
+use Felix\JfGerenciamentoClientes\services\ClienteService;
 
-// Instancie a classe Connection e obtenha a conexão
-$database = new Connection();
-$conn = $database->getConnection();
-
-// Instanciando o controlador de clientes
-$clienteController = new ClienteController($conn);
+// Instanciando a classe ClienteService
+$clienteService = new ClienteService();
 
 // Recuperando a lista de clientes
-$clientes = $clienteController->exibirClientes();
+$clientes = $clienteService->getAllClientes();
 
 ?>
 
-<?php if ($clienteController->temClientes()) : ?>
+<?php if (count($clientes) > 0) : ?>
   <?php if (isset($printMsg) && $printMsg != '') : ?>
     <p id="msg"><?= $printMsg ?></p>
   <?php endif; ?>
