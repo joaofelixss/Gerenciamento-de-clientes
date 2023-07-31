@@ -19,7 +19,7 @@ class ClienteController
 
   // Métodos para processar as requisições
 
-  public function exibirClientes()
+  public function exibirClientes(): array
   {
     $clientesData = $this->clientes->listarTodos();
     $clientes = array();
@@ -40,23 +40,23 @@ class ClienteController
   }
 
   // Método para adicionar um novo cliente
-  public function adicionarCliente($nome, $telefone, $preco, $data, $observacoes)
+  public function adicionarCliente($nome, $telefone, $preco, $data, $observacoes): int
   {
     // Chamamos o método adicionar do objeto Clientes
     return $this->clientes->adicionar($nome, $telefone, $preco, $data, $observacoes);
   }
 
   // Método para editar um cliente existente
-  public function editarCliente($id, $nome, $telefone, $preco, $data, $observacoes)
+  public function editarCliente($id, $nome, $telefone, $preco, $data, $observacoes): bool
   {
-    // Chamamos o método adicionar do objeto Clientes
+    // Chamamos o método editar do objeto Clientes
     return $this->clientes->editar($id, $nome, $telefone, $preco, $data, $observacoes);
   }
 
   // Método para excluir um cliente
-  public function excluirCliente($id)
+  public function excluirCliente($id): bool
   {
-    // Chamamos o método adicionar do objeto Clientes
+    // Chamamos o método excluir do objeto Clientes
     return $this->clientes->excluir($id);
   }
 }

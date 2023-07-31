@@ -13,7 +13,7 @@ class Clientes
   }
 
   // Método para adicionar um novo cliente ao banco de dados
-  public function adicionar($nome, $telefone, $preco, $data, $observacoes)
+  public function adicionar($nome, $telefone, $preco, $data, $observacoes): int
   {
     $query = "INSERT INTO clientes(nome, telefone, preco, data, observacoes) VALUES (:nome, :telefone, :preco, :data, :observacoes)";
     $stmt = $this->conn->prepare($query);
@@ -29,13 +29,12 @@ class Clientes
       // Retornamos o id do último registro inserido
       return $this->conn->lastInsertId();
     } catch (\PDOException $e) {
-      echo $e->getMessage();
-      return false;
+      throw new \Exception("Erro ao adicionar cliente: " . $e->getMessage());
     }
   }
 
   // Método para listar todos os clientes do banco de dados
-  public function listarTodos()
+  public function listarTodos(): array
   {
     $query = "SELECT * FROM clientes";
     $stmt = $this->conn->prepare($query);
@@ -45,7 +44,7 @@ class Clientes
   }
 
   // Método para editar um cliente existente no banco de dados
-  public function editar($id, $nome, $telefone, $preco, $data, $observacoes)
+  public function editar($id, $nome, $telefone, $preco, $data, $observacoes): bool
   {
     $query = "UPDATE clientes SET nome = :nome, telefone = :telefone, preco = :preco, data = :data, observacoes = :observacoes WHERE id = :id";
     $stmt = $this->conn->prepare($query);
@@ -61,7 +60,7 @@ class Clientes
   }
 
   // Método para excluir um cliente do banco de dados
-  public function excluir($id)
+  public function excluir($id): bool
   {
     $query = "DELETE FROM clientes WHERE id = :id";
     $stmt = $this->conn->prepare($query);
